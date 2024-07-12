@@ -1,16 +1,13 @@
 package main 
 
 import (
+	"github.com/sh4rkzy/rest-go/src/modules/health/routes"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
-func main () {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run(":3000")
+func main() {
+	router  := gin.Default()
+	router.Group("api/v1")
+	health.RegisterRoutes(router)
+	router.Run(":8080")
 }
