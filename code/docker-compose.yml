@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  web: 
+    container_name: api-rest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - HTTP_PORT=3000
+      - APP_ENV=development
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '512M'
+        reservations:
+          cpus: '0.25'
+          memory: '256M'
